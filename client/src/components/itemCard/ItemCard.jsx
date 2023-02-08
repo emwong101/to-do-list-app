@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ItemCard.scss";
 
 function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   const { _id, title, description, categories } = data;
+  const [checked, setChecked] = useState(false);
 
   const openMenu = (e) => {
     if (optionMenu !== e.target.id) {
@@ -12,10 +13,14 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
     }
   };
 
+  const handleCheck = (e) => {
+    checked === false ? setChecked(true) : setChecked(false);
+  };
+
   return (
     <li>
       <div className="item">
-        <div className="item__heading">
+        <div className={`item__heading ${checked ? "done" : ""}`}>
           <h2 className="item__title">{title}</h2>
           <div className="item__menu">
             <button id={_id} onClick={openMenu} className="item__options">
@@ -40,8 +45,19 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
             )}
           </div>
         </div>
-        <p>{description}</p>
-        <p>{categories.join()}</p>
+        <p className={`${checked ? "done" : ""}`}>{description}</p>
+        <div className="item__bottom">
+          <p>{categories.join()}</p>
+          <div className="item__checkbox">
+            <label htmlFor="done">done</label>
+            <input
+              type="checkbox"
+              name="done"
+              className="item__done"
+              onClick={handleCheck}
+            />
+          </div>
+        </div>
       </div>
     </li>
   );
