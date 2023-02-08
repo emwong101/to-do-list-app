@@ -5,10 +5,12 @@ require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 const PORT = process.env.PORT || 8080;
 
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 
 //initialize express server
 const app = express();
+app.use(cors());
 
 //import endpoints
 const routes = require("./routes/routes");
@@ -17,6 +19,7 @@ const routes = require("./routes/routes");
 connectDB();
 
 //middleware
+
 app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("Server is running"));
 
