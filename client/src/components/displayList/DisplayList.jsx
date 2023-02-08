@@ -2,30 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./DisplayList.scss";
 import { Link } from "react-router-dom";
-
-function ToDoItem({ data, handleDelete }) {
-  const { _id, title, description } = data;
-
-  return (
-    <li>
-      <div className="item">
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-      <div className="item__buttons--container">
-        <button name={_id} className="edit">
-          Edit
-        </button>
-        <button onClick={handleDelete} name={_id} className="delete">
-          Delete
-        </button>
-      </div>
-    </li>
-  );
-}
+import ItemCard from "../itemCard/ItemCard";
 
 function DisplayList() {
-  const [listItems, setListItems] = useState();
+  const [listItems, setListItems] = useState([]);
+  const [optionMenu, setOptionMenu] = useState();
+  //   const [categories, setCategories] = useState([]);
+  const [filter, setFilter] = useState("");
+
+  const handleClick = (e) => {
+    filter !== e.target.value ? setFilter(e.target.value) : setFilter("");
+  };
 
   const handleDelete = (e) => {
     axios.delete(`http://localhost:8080/lists/${e.target.name}`);
@@ -34,32 +21,58 @@ function DisplayList() {
     });
   };
 
+  const filtered = listItems.filter((item) =>
+    item.categories.some((category) => category === filter)
+  );
+
+  console.log(filtered);
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/lists")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setListItems(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  //   console.log(listItems);
+
   return (
     <div>
-      <h1>To-Do</h1>
-      <Link to="/create">
-        <button>+</button>
-      </Link>
-      <ul>
-        {listItems
-          ? listItems.map((data) => (
-              <ToDoItem
+      <div className="card__filters" onClick={handleClick}>
+        <input type="button" value="work" />
+        <input type="button" value="study" />
+        <input type="button" value="entertainment" />
+        <input type="button" value="family" />
+      </div>
+      <ul className="card__list">
+        {listItems.length > 0 ? (
+          filter === "" ? (
+            listItems.map((data) => (
+              <ItemCard
                 data={data}
                 key={data._id}
                 handleDelete={handleDelete}
+                optionMenu={optionMenu}
+                setOptionMenu={setOptionMenu}
               />
             ))
-          : ""}
+          ) : (
+            filtered.map((data) => (
+              <ItemCard
+                data={data}
+                key={data._id}
+                handleDelete={handleDelete}
+                optionMenu={optionMenu}
+                setOptionMenu={setOptionMenu}
+              />
+            ))
+          )
+        ) : (
+          <p>Nothing left to do!</p>
+        )}
       </ul>
     </div>
   );

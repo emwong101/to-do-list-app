@@ -2,11 +2,14 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   title: {
-    type: "string",
+    type: String,
     required: true,
   },
   description: {
-    type: "string",
+    type: String,
+  },
+  categories: {
+    type: Array,
   },
 });
 

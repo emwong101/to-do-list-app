@@ -5,24 +5,26 @@ import "./CreateList.scss";
 
 function CreateList() {
   const navigate = useNavigate();
-  const [data, setData] = useState({ title: "", description: "" });
+  const [data, setData] = useState([]);
 
-  function handleChange(e) {
-    setData((data) => ({ ...data, [e.target.name]: e.target.value }));
+  function handleClick(e) {
+    data.push(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const newItem = {
-      title: data.title,
-      description: data.description,
+      title: e.target.title.value,
+      description: e.target.description.value,
+      categories: data,
     };
+    console.log(newItem);
 
     axios
-      .post("http://localhost:8080/lists", data)
+      .post("http://localhost:8080/lists", newItem)
       .then((res) => {
-        setData({ title: "", description: "" });
+        setData([]);
         console.log(res.data.message);
         navigate("/");
       })
@@ -33,19 +35,54 @@ function CreateList() {
     <div>
       <form className="form__container" onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          value={data.title}
-          onChange={handleChange}
-        ></input>
+        <input type="text" name="title"></input>
         <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          value={data.description}
-          onChange={handleChange}
-        ></input>
+        <input type="text" name="description"></input>
+        <div className="category__div">
+          <label htmlFor="">
+            <input
+              type="checkbox"
+              name="categories"
+              value="work"
+              onClick={handleClick}
+            />
+            <span>work</span>
+          </label>
+        </div>
+        <div className="category__div">
+          <label htmlFor="">
+            <input
+              type="checkbox"
+              name="categories"
+              value="study"
+              onClick={handleClick}
+            />
+            <span>study</span>
+          </label>
+        </div>
+        <div className="category__div">
+          <label htmlFor="">
+            <input
+              type="checkbox"
+              name="categories"
+              value="entertainment"
+              onClick={handleClick}
+            />
+            <span>entertainment</span>
+          </label>
+        </div>
+        <div className="category__div">
+          <label htmlFor="">
+            <input
+              type="checkbox"
+              name="categories"
+              value="family"
+              onClick={handleClick}
+            />
+            <span>family</span>
+          </label>
+        </div>
+
         <input type="submit" value="Submit"></input>
       </form>
     </div>

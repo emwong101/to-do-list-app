@@ -1,0 +1,13 @@
+.card {
+  &__list {
+    list-style: none;
+    padding: 1rem 3rem;
+    margin: 0;
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+  }
+}
