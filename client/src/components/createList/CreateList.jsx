@@ -33,11 +33,7 @@ function CreateList() {
 
   return (
     <div>
-      <FormTemplate
-        handleSubmit={handleSubmit}
-        data={data}
-        handleClick={handleClick}
-      />
+      <FormTemplate handleSubmit={handleSubmit} handleClick={handleClick} />
     </div>
   );
 }

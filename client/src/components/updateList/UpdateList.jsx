@@ -6,15 +6,15 @@ import FormTemplate from "../form/FormTemplate";
 
 function UpdateList() {
   const [data, setData] = useState();
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
   const params = useParams();
 
   console.log(params);
 
   const handleClick = (e) => {
-    data.categories.filter((item) => {
-      return item !== e.target.value;
-    });
+    data.categories.some((item) => item === e.target.value)
+      ? ""
+      : categories.push(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -23,12 +23,14 @@ function UpdateList() {
     const updatedItem = {
       title: e.target.title.value,
       description: e.target.description.value,
+      categories: categories,
     };
 
     axios
       .put(`http://localhost:8080/lists/${params.id}`, updatedItem)
       .then((res) => {
         console.log(res.data.message);
+        setCategories([]);
       })
       .catch((err) => console.log(err));
   };
