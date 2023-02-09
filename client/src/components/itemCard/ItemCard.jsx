@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ItemCard.scss";
 
 function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
@@ -29,9 +30,11 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
 
             {optionMenu === _id ? (
               <div className="item__dropdown">
-                <button name={_id} className="dropdown__link">
-                  Edit
-                </button>
+                <Link to={`/update/${_id}`}>
+                  <button name={_id} className="dropdown__link">
+                    Edit
+                  </button>
+                </Link>
                 <button
                   onClick={handleDelete}
                   name={_id}

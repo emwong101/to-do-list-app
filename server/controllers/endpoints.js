@@ -1,8 +1,17 @@
 const toDo = require("../models/toDo");
 
-exports.getAllItems = (req, res) => {
+exports.getAllItems = (_req, res) => {
   toDo
     .find()
+    .then((item) => res.json(item))
+    .catch((err) => {
+      res.status(404).json({ message: "Item not found", error: err.message });
+    });
+};
+
+exports.getOneItem = (req, res) => {
+  toDo
+    .findById(req.params.id)
     .then((item) => res.json(item))
     .catch((err) => {
       res.status(404).json({ message: "Item not found", error: err.message });
@@ -21,15 +30,14 @@ exports.createItem = (req, res) => {
 };
 
 exports.updateItem = (req, res) => {
-  toDo.findByIdAndUpdate(req.params.id, req.body).then((data) => {
-    res
-      .json({ message: "Item successfully updated", data })
-      .catch((err) =>
-        res
-          .status(400)
-          .json({ message: "Failed to update", error: err.message })
-      );
-  });
+  toDo
+    .findByIdAndUpdate(req.params.id, req.body)
+    .then((data) => {
+      res.json({ message: "Item successfully updated", data });
+    })
+    .catch((err) =>
+      res.status(400).json({ message: "Failed to update", error: err.message })
+    );
 };
 
 exports.deleteItem = (req, res) => {
