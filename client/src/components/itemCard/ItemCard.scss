@@ -1,19 +1,24 @@
 .item {
   width: 100%;
-  background-color: rgb(234, 234, 190);
-  color: black;
+  background-color: #fff9de;
   border-radius: 5px;
-  padding: 0.5rem 2rem;
-  margin-bottom: 0.5rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
 
   &__heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1rem;
   }
 
   &__title {
+    margin: 0;
+  }
+
+  &__body {
+    padding: 1rem 0;
     margin: 0;
   }
 
@@ -24,7 +29,6 @@
 
   &__options {
     background: none;
-    color: black;
     border: none;
     outline: none;
     padding: 0;
@@ -38,6 +42,7 @@
     position: absolute;
     min-width: 10rem;
     right: 0;
+    top: 80%;
     text-align: left;
     background-color: white;
     border-radius: 5px;
@@ -46,27 +51,118 @@
   &__bottom {
     display: flex;
     justify-content: space-between;
+    padding-top: 2.25rem;
+  }
+
+  &__categories {
+    display: flex;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    &--container {
+      position: relative;
+      padding-right: 1.5rem;
+      line-height: 1;
+      color: #b2afa1;
+
+      &:has(> input:checked) {
+        color: black;
+      }
+    }
+
+    &--custom {
+      position: absolute;
+      right: 5px;
+      height: 1rem;
+      width: 1rem;
+      border: 1px solid #b2afa1;
+      border-radius: 6px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        right: 0;
+        left: 5px;
+        bottom: 2px;
+        width: 0.4rem;
+        height: 0.75rem;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__done {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .item__checkbox--custom::after {
+      display: block;
+    }
+
+    &:checked + span {
+      border-color: black;
+    }
   }
 }
 
 .dropdown__link {
   background: none;
-  color: black;
+  color: #d1cfc7;
   width: 100%;
   height: 100%;
   text-align: left;
-  padding: 0.5rem 0.5rem;
-
-  &:first-of-type {
-    border-bottom: 1px solid black;
-    border-radius: 0;
-  }
+  padding: 1rem 0.5rem;
+  font-weight: bold;
+  border: none;
 }
 
-p {
+hr {
   margin: 0;
+  border: none;
+  background-color: #d1cfc7;
+  height: 1px;
 }
 
 .done {
   text-decoration: line-through;
+}
+
+.category {
+  border-radius: 50%;
+  min-height: 2rem;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+
+  &__work {
+    background-color: #d2ceff;
+  }
+
+  &__study {
+    background-color: #d1e5f7;
+  }
+
+  &__entertainment {
+    background-color: #ffcece;
+  }
+
+  &__family {
+    background-color: #daf2d6;
+  }
+}
+
+.icon {
+  color: #b2afa1;
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }

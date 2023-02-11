@@ -19,6 +19,7 @@ function CreateList() {
       title: e.target.title.value,
       description: e.target.description.value,
       categories: data,
+      complete: false,
     };
 
     axios

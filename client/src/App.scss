@@ -1,8 +1,12 @@
+@use "./partials/fonts" as fonts;
+
 html,
 body {
   margin: 0;
   height: 100vh;
   box-sizing: border-box;
+  font-family: "Ubuntu";
+  color: #69665c;
 }
 
 *,

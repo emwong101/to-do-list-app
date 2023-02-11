@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function FormTemplate({ handleSubmit, data, handleClick }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form__top">
-        <button className="form__cancel">Cancel</button>
+        <Link to="/">
+          <button className="form__cancel">Cancel</button>
+        </Link>
         <input type="submit" className="form__add" value="Add" />
       </div>
       <div className="form__inputs">

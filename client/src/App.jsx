@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import CreateList from "./components/createList/CreateList";
 import DisplayList from "./components/displayList/DisplayList";
 import TopNav from "./components/topNav/TopNav";
