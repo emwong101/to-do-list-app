@@ -26,9 +26,9 @@ logic for category filters:
 
   //delete list item from DB
   const handleDelete = (e) => {
-    axios.delete(`http://localhost:8080/lists/${e.target.name}`);
+    axios.delete(`http://localhost:8080/lists/${optionMenu}`);
     setListItems((data) => {
-      return data.filter((item) => item._id !== e.target.name);
+      return data.filter((item) => item._id !== optionMenu);
     });
   };
 

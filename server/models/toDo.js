@@ -11,6 +11,9 @@ const schema = new mongoose.Schema({
   categories: {
     type: Array,
   },
+  complete: {
+    type: Boolean,
+  },
 });
 
 const toDo = mongoose.model("toDo", schema);
