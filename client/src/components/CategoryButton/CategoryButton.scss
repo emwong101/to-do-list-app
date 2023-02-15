@@ -1,0 +1,38 @@
+.card__filter {
+  background: none;
+  color: inherit;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+}
+
+.filter {
+  border-radius: 50%;
+  min-height: 2rem;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+  border: none;
+  outline: none;
+
+  &__work {
+    background-color: #d2ceff;
+  }
+
+  &__study {
+    background-color: #d1e5f7;
+  }
+
+  &__entertainment {
+    background-color: #ffcece;
+  }
+
+  &__family {
+    background-color: #daf2d6;
+  }
+}
+
+.active {
+  background-color: #f1f0ee;
+  border-radius: 5px;
+}

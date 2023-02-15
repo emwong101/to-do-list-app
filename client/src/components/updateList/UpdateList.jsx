@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./UpdateList.scss";
 import FormTemplate from "../form/FormTemplate";
@@ -8,13 +8,16 @@ function UpdateList() {
   const [data, setData] = useState();
   const [categories, setCategories] = useState([]);
   const params = useParams();
-
-  console.log(params);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
-    data.categories.some((item) => item === e.target.value)
-      ? ""
-      : categories.push(e.target.value);
+    const index = categories.indexOf(e.target.value);
+
+    if (categories.some((item) => item === e.target.value)) {
+      categories.splice(index, 1);
+    } else {
+      categories.push(e.target.value);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -31,6 +34,7 @@ function UpdateList() {
       .then((res) => {
         console.log(res.data.message);
         setCategories([]);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -40,11 +44,10 @@ function UpdateList() {
       .get(`http://localhost:8080/lists/${params.id}`)
       .then((res) => {
         setData(res.data);
+        setCategories(res.data.categories);
       })
       .catch((err) => console.log(err));
   }, []);
-
-  console.log(data);
 
   return (
     <>
@@ -52,6 +55,7 @@ function UpdateList() {
         data={data}
         handleSubmit={handleSubmit}
         handleClick={handleClick}
+        categories={categories}
       />
     </>
   );

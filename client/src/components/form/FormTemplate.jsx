@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CategoryButton from "../CategoryButton/CategoryButton";
+import "./FormTemplate.scss";
 
-function FormTemplate({ handleSubmit, data, handleClick }) {
+function FormTemplate({ handleSubmit, data, handleClick, categories }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
       <div className="form__top">
         <Link to="/">
           <button className="form__cancel">Cancel</button>
@@ -11,105 +13,52 @@ function FormTemplate({ handleSubmit, data, handleClick }) {
         <input type="submit" className="form__add" value="Add" />
       </div>
       <div className="form__inputs">
-        <h3 className="form__title">Title</h3>
+        <label className="form__heading">Title</label>
         <input
           type="text"
           name="title"
-          className="form__title--input"
+          className="form__input"
           defaultValue={data ? data.title : ""}
+          placeholder="add a title ..."
         />
-        <h3 className="form__description">Description</h3>
-        <input
-          type="text"
-          className="form__description--input"
+        <label className="form__heading">Description</label>
+        <textarea
+          className="form__input form__input--large"
           name="description"
+          placeholder="add a description ..."
           defaultValue={data ? data.description : ""}
         />
       </div>
       <div className="form__tags">
-        {data ? (
-          <>
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="work"
-              name="work"
-              onClick={handleClick}
-              defaultChecked={data.categories.some((item) => item === "work")}
-            />
-            <span className="form__category--label">Work</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="study"
-              name="study"
-              onClick={handleClick}
-              defaultChecked={data.categories.some((item) => item === "study")}
-            />
-            <span className="form__category--label">Study</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="entertainment"
-              name="entertainment"
-              onClick={handleClick}
-              defaultChecked={data.categories.some(
-                (item) => item === "entertainment"
-              )}
-            />
-            <span className="form__category--label">Entertainment</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="family"
-              name="family"
-              onClick={handleClick}
-              defaultChecked={data.categories.some((item) => item === "family")}
-            />
-            <span className="form__category--label">Family</span>
-          </>
-        ) : (
-          <>
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="work"
-              name="work"
-              onClick={handleClick}
-            />
-            <span className="form__category--label">Work</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="study"
-              name="study"
-              onClick={handleClick}
-            />
-            <span className="form__category--label">Study</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="entertainment"
-              name="entertainment"
-              onClick={handleClick}
-            />
-            <span className="form__category--label">Entertainment</span>
-
-            <input
-              type="checkbox"
-              className="form__tag"
-              value="family"
-              name="family"
-              onClick={handleClick}
-            />
-            <span className="form__category--label">Family</span>
-          </>
-        )}
+        <label className="form__heading">Tags</label>
+        <CategoryButton
+          name="work"
+          handleClick={handleClick}
+          classes={`card__filter `}
+          data={data}
+          categories={categories}
+        />
+        <CategoryButton
+          name="study"
+          handleClick={handleClick}
+          classes={`card__filter `}
+          data={data}
+          categories={categories}
+        />
+        <CategoryButton
+          name="entertainment"
+          handleClick={handleClick}
+          classes={`card__filter `}
+          data={data}
+          categories={categories}
+        />
+        <CategoryButton
+          name="family"
+          handleClick={handleClick}
+          classes={`card__filter `}
+          data={data}
+          categories={categories}
+        />
       </div>
     </form>
   );

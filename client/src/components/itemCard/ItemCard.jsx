@@ -20,9 +20,7 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   };
 
   const openMenu = (e) => {
-    if (optionMenu !== e.target.id) {
-      setOptionMenu(e.target.id);
-    }
+    setOptionMenu(e.target.id);
     setItem(e.currentTarget);
     // setOptionMenu(item);
   };

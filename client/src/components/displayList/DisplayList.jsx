@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./DisplayList.scss";
 import ItemCard from "../itemCard/ItemCard";
+import CategoryButton from "../CategoryButton/CategoryButton";
+import TopNav from "../topNav/TopNav";
 
 function DisplayList() {
   const [listItems, setListItems] = useState([]);
@@ -21,7 +23,6 @@ logic for category filters:
   //set filter keyword on click
   const handleClick = (e) => {
     filter !== e.target.value ? setFilter(e.target.value) : setFilter("");
-    console.log(e.target);
   };
 
   //delete list item from DB
@@ -44,49 +45,32 @@ logic for category filters:
 
   return (
     <div className="card">
+      <TopNav />
       <div className="card__filters">
-        <div className={`card__filter ${filter === "work" ? "active" : ""}`}>
-          <button
-            className={`filter filter__work`}
-            id="work"
-            value="work"
-            onClick={handleClick}
-          ></button>
-          <label name="work" htmlFor="work">
-            work
-          </label>
-        </div>
-        <div className={`card__filter ${filter === "study" ? "active" : ""}`}>
-          <button
-            className={`filter filter__study`}
-            id="study"
-            value="study"
-            onClick={handleClick}
-          ></button>
-          <label htmlFor="study">study</label>
-        </div>
-        <div
-          className={`card__filter ${
-            filter === "entertainment" ? "active" : ""
-          }`}
-        >
-          <button
-            className={`filter filter__entertainment`}
-            id="entertainment"
-            value="entertainment"
-            onClick={handleClick}
-          ></button>
-          <label htmlFor="entertainment">entertainment</label>
-        </div>
-        <div className={`card__filter ${filter === "family" ? "active" : ""}`}>
-          <button
-            className={`filter filter__family`}
-            id="family"
-            value="family"
-            onClick={handleClick}
-          ></button>
-          <label htmlFor="family">family</label>
-        </div>
+        <CategoryButton
+          filter={filter}
+          name="work"
+          handleClick={handleClick}
+          classes={`card__filter ${filter === "work" ? "active" : ""}`}
+        />
+        <CategoryButton
+          filter={filter}
+          name="study"
+          handleClick={handleClick}
+          classes={`card__filter ${filter === "study" ? "active" : ""}`}
+        />
+        <CategoryButton
+          filter={filter}
+          name="entertainment"
+          handleClick={handleClick}
+          classes={`card__filter ${filter === "entertainment" ? "active" : ""}`}
+        />
+        <CategoryButton
+          filter={filter}
+          name="family"
+          handleClick={handleClick}
+          classes={`card__filter ${filter === "family" ? "active" : ""}`}
+        />
       </div>
       <ul className="card__list">
         {

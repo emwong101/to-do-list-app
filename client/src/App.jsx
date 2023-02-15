@@ -10,13 +10,12 @@ function App() {
     <>
       <BrowserRouter>
         <div className="App">
-          <TopNav />
+          {/* <TopNav /> */}
           <Routes>
             <Route path="/" element={<DisplayList />} />
             <Route path="/create" element={<CreateList />} />
             <Route path="/update/:id" element={<UpdateList />} />
           </Routes>
-          {/* <FormTemplate /> */}
         </div>
       </BrowserRouter>
     </>

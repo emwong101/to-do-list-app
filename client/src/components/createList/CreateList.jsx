@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateList.scss";
@@ -6,10 +6,14 @@ import FormTemplate from "../form/FormTemplate";
 
 function CreateList() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [categoryName, setCategoryName] = useState();
 
   function handleClick(e) {
-    data.push(e.target.value);
+    const index = categories.indexOf(e.target.value);
+    categories.includes(e.target.value)
+      ? categories.splice(index, 1)
+      : categories.push(e.target.value);
   }
 
   function handleSubmit(e) {
@@ -18,14 +22,14 @@ function CreateList() {
     const newItem = {
       title: e.target.title.value,
       description: e.target.description.value,
-      categories: data,
+      categories: categories,
       complete: false,
     };
 
     axios
       .post("http://localhost:8080/lists", newItem)
       .then((res) => {
-        setData([]);
+        setCategories([]);
         console.log(res.data.message);
         navigate("/");
       })
@@ -34,7 +38,11 @@ function CreateList() {
 
   return (
     <div>
-      <FormTemplate handleSubmit={handleSubmit} handleClick={handleClick} />
+      <FormTemplate
+        categories={categories}
+        handleSubmit={handleSubmit}
+        handleClick={handleClick}
+      />
     </div>
   );
 }
