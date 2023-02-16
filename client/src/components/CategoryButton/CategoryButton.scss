@@ -1,3 +1,5 @@
+@use "../../partials/colors" as *;
+
 .card__filter {
   background: none;
   color: inherit;
@@ -16,11 +18,11 @@
   outline: none;
 
   &__work {
-    background-color: #d2ceff;
+    background-color: $primary-work;
   }
 
   &__study {
-    background-color: #d1e5f7;
+    background-color: $primary-study;
   }
 
   &__entertainment {
@@ -28,7 +30,7 @@
   }
 
   &__family {
-    background-color: #daf2d6;
+    background-color: $primary-family;
   }
 }
 

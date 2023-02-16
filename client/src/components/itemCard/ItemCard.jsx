@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FiMoreHorizontal } from "react-icons/fi";
 import IconButton from "@mui/material/IconButton";
@@ -10,6 +10,7 @@ import "./ItemCard.scss";
 function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   const { _id, title, description, categories, complete } = data;
   const navigate = useNavigate();
+  const location = useLocation();
   const [checked, setChecked] = useState(complete);
   const [mounted, setMounted] = useState(false);
   const [item, setItem] = useState();
@@ -22,7 +23,6 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   const openMenu = (e) => {
     setOptionMenu(e.target.id);
     setItem(e.currentTarget);
-    // setOptionMenu(item);
   };
 
   const closeMenu = () => {
@@ -38,7 +38,7 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   }, []);
 
   useEffect(() => {
-    if (mounted) {
+    if (mounted && location.pathname !== "/landing") {
       axios
         .put(`http://localhost:8080/lists/${_id}`, {
           complete: checked,
@@ -53,11 +53,15 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   }, [checked]);
 
   return (
-    <li>
+    <li className="list__item">
       <StyledEngineProvider injectFirst>
-        <div className="item">
-          <div className={`item__heading ${checked ? "done" : ""}`}>
-            <h2 className="item__title">{title}</h2>
+        <div
+          className={`${location.pathname === "/landing" ? "mini" : ""} item`}
+        >
+          <div className="item__heading">
+            <span className={`item__title ${checked ? "done" : ""}`}>
+              <h2>{title}</h2>
+            </span>
             <div className="item__menu">
               <IconButton
                 className="item__menu--button"
@@ -95,7 +99,9 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
               </Menu>
             </div>
           </div>
-          <p className={`item__body ${checked ? "done" : ""}`}>{description}</p>
+          <span className={`item__body ${checked ? "done--body" : ""}`}>
+            {description}
+          </span>
           <div className="item__bottom">
             <div className="item__categories">
               {categories

@@ -1,12 +1,15 @@
 @use "./partials/fonts" as fonts;
+@use "./partials/colors" as *;
 
 html,
-body {
+body,
+.App {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
   box-sizing: border-box;
   font-family: "Ubuntu";
-  color: #69665c;
+  color: $primary-dark;
 }
 
 *,

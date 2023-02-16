@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import "./DisplayList.scss";
 import ItemCard from "../itemCard/ItemCard";
 import CategoryButton from "../CategoryButton/CategoryButton";
@@ -44,66 +45,77 @@ logic for category filters:
   }, []);
 
   return (
-    <div className="card">
-      <TopNav />
-      <div className="card__filters">
-        <CategoryButton
-          filter={filter}
-          name="work"
-          handleClick={handleClick}
-          classes={`card__filter ${filter === "work" ? "active" : ""}`}
-        />
-        <CategoryButton
-          filter={filter}
-          name="study"
-          handleClick={handleClick}
-          classes={`card__filter ${filter === "study" ? "active" : ""}`}
-        />
-        <CategoryButton
-          filter={filter}
-          name="entertainment"
-          handleClick={handleClick}
-          classes={`card__filter ${filter === "entertainment" ? "active" : ""}`}
-        />
-        <CategoryButton
-          filter={filter}
-          name="family"
-          handleClick={handleClick}
-          classes={`card__filter ${filter === "family" ? "active" : ""}`}
-        />
-      </div>
-      <ul className="card__list">
-        {
-          //check if listItems contains items
-          listItems.length > 0 ? (
-            //check if filter has been set, return all results if not set
-            filter === "" ? (
-              listItems.map((data) => (
-                <ItemCard
-                  data={data}
-                  key={data._id}
-                  handleDelete={handleDelete}
-                  optionMenu={optionMenu}
-                  setOptionMenu={setOptionMenu}
-                />
-              ))
-            ) : (
-              filtered.map((data) => (
-                <ItemCard
-                  data={data}
-                  key={data._id}
-                  handleDelete={handleDelete}
-                  optionMenu={optionMenu}
-                  setOptionMenu={setOptionMenu}
-                />
-              ))
-            )
-          ) : (
-            <p>Nothing left to do!</p>
-          )
-        }
-      </ul>
-    </div>
+    <>
+      <motion.div
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ ease: "linear", delay: 0.25 }}
+        exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
+      >
+        <TopNav />
+        <section className="card">
+          <div className="card__filters">
+            <CategoryButton
+              filter={filter}
+              name="work"
+              handleClick={handleClick}
+              classes={`card__filter ${filter === "work" ? "active" : ""}`}
+            />
+            <CategoryButton
+              filter={filter}
+              name="study"
+              handleClick={handleClick}
+              classes={`card__filter ${filter === "study" ? "active" : ""}`}
+            />
+            <CategoryButton
+              filter={filter}
+              name="entertainment"
+              handleClick={handleClick}
+              classes={`card__filter ${
+                filter === "entertainment" ? "active" : ""
+              }`}
+            />
+            <CategoryButton
+              filter={filter}
+              name="family"
+              handleClick={handleClick}
+              classes={`card__filter ${filter === "family" ? "active" : ""}`}
+            />
+          </div>
+          <ul className="card__list">
+            {
+              //check if listItems contains items
+              listItems.length > 0 ? (
+                //check if filter has been set, return all results if not set
+                filter === "" ? (
+                  listItems.map((data) => (
+                    <ItemCard
+                      data={data}
+                      key={data._id}
+                      handleDelete={handleDelete}
+                      optionMenu={optionMenu}
+                      setOptionMenu={setOptionMenu}
+                    />
+                  ))
+                ) : (
+                  filtered.map((data) => (
+                    <ItemCard
+                      data={data}
+                      key={data._id}
+                      handleDelete={handleDelete}
+                      optionMenu={optionMenu}
+                      setOptionMenu={setOptionMenu}
+                    />
+                  ))
+                )
+              ) : (
+                <p>Nothing left to do!</p>
+              )
+            }
+          </ul>
+        </section>
+      </motion.div>
+    </>
   );
 }
 

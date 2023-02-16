@@ -1,6 +1,11 @@
+@use "../../partials/colors" as *;
+@use "../../partials/breakpoints" as *;
+
 .item {
   width: 100%;
-  background-color: #fff9de;
+  min-width: 15rem;
+  height: fit-content;
+  background-color: $primary-background;
   border-radius: 5px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -9,15 +14,21 @@
 
   &__heading {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
   }
 
   &__title {
-    margin: 0;
+    display: block;
+    & > h2 {
+      margin: 0;
+    }
   }
 
   &__body {
+    display: block;
+    width: fit-content;
     padding: 1rem 0;
     margin: 0;
   }
@@ -64,7 +75,7 @@
       position: relative;
       padding-right: 1.5rem;
       line-height: 1;
-      color: #b2afa1;
+      color: $primary-medium;
 
       &:has(> input:checked) {
         color: black;
@@ -76,7 +87,7 @@
       right: 5px;
       height: 1rem;
       width: 1rem;
-      border: 1px solid #b2afa1;
+      border: 1px solid $primary-medium;
       border-radius: 6px;
 
       &:after {
@@ -115,7 +126,35 @@
 }
 
 .done {
-  text-decoration: line-through;
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+
+  &::after {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 55%;
+    left: 0;
+    height: 2px;
+    background: #696969;
+    transform-origin: left;
+    animation: strike 0.5s cubic-bezier(0.55, 0, 0.1, 1) 1;
+    animation-fill-mode: both;
+    transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &--body {
+    @extend .done;
+    &::after {
+      height: 1px;
+    }
+  }
+}
+
+.list__item {
+  list-style: none;
 }
 
 .link {
@@ -131,11 +170,11 @@
   margin-right: 0.5rem;
 
   &__work {
-    background-color: #d2ceff;
+    background-color: $primary-work;
   }
 
   &__study {
-    background-color: #d1e5f7;
+    background-color: $primary-study;
   }
 
   &__entertainment {
@@ -143,7 +182,7 @@
   }
 
   &__family {
-    background-color: #daf2d6;
+    background-color: $primary-family;
   }
 }
 

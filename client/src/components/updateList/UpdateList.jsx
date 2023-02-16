@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./UpdateList.scss";
 import FormTemplate from "../form/FormTemplate";
 
 function UpdateList() {
@@ -34,7 +33,7 @@ function UpdateList() {
       .then((res) => {
         console.log(res.data.message);
         setCategories([]);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => console.log(err));
   };

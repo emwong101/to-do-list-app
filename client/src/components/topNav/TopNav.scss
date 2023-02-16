@@ -1,10 +1,12 @@
+@use "../../partials/colors" as *;
+
 .heading {
   &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.75rem;
   }
 
   &__title {
@@ -14,7 +16,7 @@
 
   &__add {
     display: block;
-    color: #69665c;
+    color: $primary-dark;
     font-size: 1.75rem;
   }
 }

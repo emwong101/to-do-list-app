@@ -31,7 +31,7 @@ function CreateList() {
       .then((res) => {
         setCategories([]);
         console.log(res.data.message);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => console.log(err.message));
   }
