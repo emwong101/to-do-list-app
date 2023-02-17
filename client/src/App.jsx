@@ -9,6 +9,7 @@ import Landing from "./pages/landing/Landing";
 
 function App() {
   const location = useLocation();
+
   return (
     <>
       <div className="App">

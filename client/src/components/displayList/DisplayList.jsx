@@ -10,6 +10,7 @@ function DisplayList() {
   const [listItems, setListItems] = useState([]);
   const [optionMenu, setOptionMenu] = useState();
   const [filter, setFilter] = useState("");
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   /* 
 logic for category filters:
@@ -42,6 +43,18 @@ logic for category filters:
         setListItems(res.data);
       })
       .catch((err) => console.log(err));
+  });
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
   return (

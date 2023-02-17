@@ -71,11 +71,13 @@
     display: flex;
     align-items: center;
     padding-top: 0.25rem;
+
     &--container {
       position: relative;
       padding-right: 1.5rem;
       line-height: 1;
       color: $primary-medium;
+      cursor: pointer;
 
       &:has(> input:checked) {
         color: black;
