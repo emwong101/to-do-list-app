@@ -31,6 +31,7 @@ function Landing() {
         <p className="landing__text">
           An elevated version of a classic to-do app based on{" "}
           <a
+            target="_blank"
             className="landing__link"
             href="https://www.behance.net/gallery/107935847/Todo-List-Desktop-Mobile-app-UI-Design?tracking_source=search_projects%7CTodo+list"
           >

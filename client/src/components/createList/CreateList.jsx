@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateList.scss";
@@ -13,6 +9,12 @@ function CreateList() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState();
+
+  const animation = {
+    hidden: { opacity: 0, x: "100vw" },
+    visible: { opacity: 1, x: 0, transition: { ease: "linear", delay: 0.25 } },
+    exit: { opacity: 1, x: "-100vw", transition: { ease: "easeInOut" } },
+  };
 
   function handleClick(e) {
     const index = categories.indexOf(e.target.value);
@@ -42,13 +44,25 @@ function CreateList() {
   }
 
   return (
-    <div>
-      <FormTemplate
-        categories={categories}
-        handleSubmit={handleSubmit}
-        handleClick={handleClick}
-      />
-    </div>
+    // <div className="modalDiv">
+    //   <motion.div
+    //     className="modal"
+    //     // initial={{ x: "100vw" }}
+    //     // animate={{ x: 0 }}
+    //     // transition={{ ease: "linear", delay: 0.25 }}
+    //     // exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
+    //     initial="hidden"
+    //     animate="visible"
+    //     exit="leave"
+    //     variants={animation}
+    //   >
+    <FormTemplate
+      categories={categories}
+      handleSubmit={handleSubmit}
+      handleClick={handleClick}
+    />
+    //   </motion.div>
+    // </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import "./DisplayList.scss";
@@ -11,6 +12,16 @@ function DisplayList() {
   const [optionMenu, setOptionMenu] = useState();
   const [filter, setFilter] = useState("");
   const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  const animation =
+    windowSize > 768
+      ? {}
+      : {
+          initial: { x: "100vw" },
+          animate: { x: 0 },
+          transition: { ease: "linear", delay: 0.25 },
+          exit: { x: "-100vw", transition: { ease: "easeInOut" } },
+        };
 
   /* 
 logic for category filters:
@@ -63,9 +74,9 @@ logic for category filters:
         initial={{ x: "100vw" }}
         animate={{ x: 0 }}
         transition={{ ease: "linear", delay: 0.25 }}
-        exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
+        exit={{ x: "-100vw", transition: { ease: "linear" } }}
       >
-        <TopNav />
+        <TopNav windowSize={windowSize} />
         <section className="card">
           <div className="card__filters">
             <CategoryButton
@@ -127,6 +138,7 @@ logic for category filters:
             }
           </ul>
         </section>
+        <Outlet />
       </motion.div>
     </>
   );

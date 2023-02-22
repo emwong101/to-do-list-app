@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom";
 import { HiPlus } from "react-icons/hi";
 import "./TopNav.scss";
 import CreateList from "../createList/CreateList";
 
 function TopNav({ windowSize }) {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const handleOpen = () => {
     setOpen(true);
@@ -22,9 +20,10 @@ function TopNav({ windowSize }) {
 
   return (
     <nav className="heading__container">
-      <h1 className="heading__title">todo</h1>
-
-      {windowSize > 768 ? (
+      <Link to="/landing" className="heading__logo">
+        <h1 className="heading__title">todo</h1>
+      </Link>
+      {/* {windowSize > 768 ? (
         <>
           <HiPlus className="heading__add" onClick={handleOpen} />
           <Dialog open={open} onClose={handleClose}>
@@ -33,11 +32,12 @@ function TopNav({ windowSize }) {
             </DialogContent>
           </Dialog>
         </>
-      ) : (
-        <Link to="/create">
-          <HiPlus className="heading__add" onClick={handleOpen} />
-        </Link>
-      )}
+      ) : ( */}
+      <Link to="/home/create" state={{ backgroundLocation: location }}>
+        <HiPlus className="heading__add" onClick={handleOpen} />
+      </Link>
+      {/* )} */}
+      <Outlet />
     </nav>
   );
 }
