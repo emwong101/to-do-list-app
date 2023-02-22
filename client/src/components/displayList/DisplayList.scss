@@ -18,6 +18,7 @@
 
   &__filter {
     width: fit-content;
+    min-width: 0;
     padding: 0.25rem 0.5rem;
     background: none;
     color: inherit;
@@ -34,8 +35,8 @@
 
 .filter {
   border-radius: 50%;
-  min-height: 2rem;
-  min-width: 2rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
   margin-right: 0.5rem;
   padding: 0;
   border: none;
@@ -73,10 +74,19 @@
       height: 17rem;
     }
 
+    &__filter {
+      font-size: 0.85rem;
+    }
+
     &__list {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
     }
+  }
+
+  .filter {
+    min-height: 2rem;
+    min-width: 2rem;
   }
 }
