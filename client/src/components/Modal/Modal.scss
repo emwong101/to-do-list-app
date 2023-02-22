@@ -1,11 +1,18 @@
 .modal {
   min-width: fit-content;
-  min-height: fit-content;
+  height: 100%;
   max-width: 100%;
   display: flex;
   justify-content: center;
+  padding: 3rem;
+  overflow: hidden;
 
   & > * {
     flex: 1 1 0;
   }
+}
+
+.MuiDialog-paper {
+  min-height: 80vh;
+  border-radius: 18px;
 }

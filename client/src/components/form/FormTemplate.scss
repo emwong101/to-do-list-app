@@ -1,12 +1,13 @@
 @use "../../partials/colors" as *;
+@use "../../partials/breakpoints" as *;
 
 * {
   font-family: inherit;
 }
 
 .form {
-  padding: 2rem 1.5rem;
-  height: 100vh;
+  padding: 0rem 1.5rem;
+  height: 100%;
 
   &__top {
     display: flex;
@@ -71,5 +72,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+  }
+}
+
+@include tablet {
+  .form {
+    max-height: 100%;
+    max-width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      flex: 1 1 0;
+    }
+
+    &__top {
+      padding-bottom: 0;
+    }
+    &__tags--container {
+      display: flex;
+    }
   }
 }

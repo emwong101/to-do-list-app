@@ -10,10 +10,11 @@ function FormTemplate({ handleSubmit, data, handleClick, categories }) {
     <form onSubmit={handleSubmit} className="form">
       {" "}
       <motion.div
-        initial={{ x: "100vw" }}
-        animate={{ x: 0 }}
-        transition={{ ease: "linear", delay: 0.25 }}
-        exit={{ x: "-100vw", transition: { ease: "linear" } }}
+        className="form"
+        // initial={{ x: "100vw" }}
+        // animate={{ x: 0 }}
+        // transition={{ ease: "linear", delay: 0.25 }}
+        // exit={{ x: "-100vw", transition: { ease: "linear" } }}
       >
         <div className="form__top">
           {/* <Link to="/home"> */}
@@ -47,34 +48,36 @@ function FormTemplate({ handleSubmit, data, handleClick, categories }) {
         </div>
         <div className="form__tags">
           <label className="form__heading">Tags</label>
-          <CategoryButton
-            name="work"
-            handleClick={handleClick}
-            classes={`card__filter form__filter`}
-            data={data}
-            categories={categories}
-          />
-          <CategoryButton
-            name="study"
-            handleClick={handleClick}
-            classes={`card__filter form__filter`}
-            data={data}
-            categories={categories}
-          />
-          <CategoryButton
-            name="entertainment"
-            handleClick={handleClick}
-            classes={`card__filter form__filter`}
-            data={data}
-            categories={categories}
-          />
-          <CategoryButton
-            name="family"
-            handleClick={handleClick}
-            classes={`card__filter form__filter`}
-            data={data}
-            categories={categories}
-          />
+          <div className="form__tags--container">
+            <CategoryButton
+              name="work"
+              handleClick={handleClick}
+              classes={`card__filter form__filter`}
+              data={data}
+              categories={categories}
+            />
+            <CategoryButton
+              name="study"
+              handleClick={handleClick}
+              classes={`card__filter form__filter`}
+              data={data}
+              categories={categories}
+            />
+            <CategoryButton
+              name="entertainment"
+              handleClick={handleClick}
+              classes={`card__filter form__filter`}
+              data={data}
+              categories={categories}
+            />
+            <CategoryButton
+              name="family"
+              handleClick={handleClick}
+              classes={`card__filter form__filter`}
+              data={data}
+              categories={categories}
+            />
+          </div>
         </div>{" "}
       </motion.div>
     </form>

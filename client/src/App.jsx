@@ -22,8 +22,8 @@ function App() {
             <Route path="/home" element={<DisplayList />}>
               <Route element={<Lists />}>
                 <Route path="create" element={<CreateList />} />
+                <Route path="update/:id" element={<UpdateList />} />
               </Route>
-              <Route path="update/:id" element={<UpdateList />} />
             </Route>
           </Routes>
           {/* {background && (

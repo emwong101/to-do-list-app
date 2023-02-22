@@ -30,7 +30,9 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
   };
 
   const navigateTo = (e) => {
-    navigate(`/update/${optionMenu}`);
+    navigate(`/home/update/${optionMenu}`, {
+      state: { backgroundLocation: location },
+    });
   };
 
   useEffect(() => {

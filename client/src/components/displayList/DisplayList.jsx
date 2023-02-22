@@ -71,10 +71,10 @@ logic for category filters:
   return (
     <>
       <motion.div
-        initial={{ x: "100vw" }}
-        animate={{ x: 0 }}
-        transition={{ ease: "linear", delay: 0.25 }}
-        exit={{ x: "-100vw", transition: { ease: "linear" } }}
+      // initial={{ x: "100vw" }}
+      // animate={{ x: 0 }}
+      // transition={{ ease: "linear", delay: 0.25 }}
+      // exit={{ x: "-100vw", transition: { ease: "linear" } }}
       >
         <TopNav windowSize={windowSize} />
         <section className="card">
