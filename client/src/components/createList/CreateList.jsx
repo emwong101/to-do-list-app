@@ -5,7 +5,7 @@ import axios from "axios";
 import "./CreateList.scss";
 import FormTemplate from "../form/FormTemplate";
 
-function CreateList() {
+function CreateList({ setOpen }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState();
@@ -44,25 +44,12 @@ function CreateList() {
   }
 
   return (
-    // <div className="modalDiv">
-    //   <motion.div
-    //     className="modal"
-    //     // initial={{ x: "100vw" }}
-    //     // animate={{ x: 0 }}
-    //     // transition={{ ease: "linear", delay: 0.25 }}
-    //     // exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
-    //     initial="hidden"
-    //     animate="visible"
-    //     exit="leave"
-    //     variants={animation}
-    //   >
     <FormTemplate
       categories={categories}
       handleSubmit={handleSubmit}
       handleClick={handleClick}
+      setOpen={setOpen}
     />
-    //   </motion.div>
-    // </div>
   );
 }
 

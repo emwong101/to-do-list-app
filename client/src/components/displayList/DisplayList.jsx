@@ -7,22 +7,16 @@ import ItemCard from "../itemCard/ItemCard";
 import CategoryButton from "../CategoryButton/CategoryButton";
 import TopNav from "../topNav/TopNav";
 
-function DisplayList() {
+function DisplayList({ setOpen, setFirstMount, firstMount }) {
   const [listItems, setListItems] = useState([]);
   const [optionMenu, setOptionMenu] = useState();
   const [filter, setFilter] = useState("");
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-
-  const animation =
-    windowSize > 768
-      ? {}
-      : {
-          initial: { x: "100vw" },
-          animate: { x: 0 },
-          transition: { ease: "linear", delay: 0.25 },
-          exit: { x: "-100vw", transition: { ease: "easeInOut" } },
-        };
-
+  const variants = firstMount
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        visible: { opacity: 1, transition: { ease: "linear", delay: 0.25 } },
+      };
   /* 
 logic for category filters:
       >filter through all list items
@@ -56,44 +50,39 @@ logic for category filters:
       .catch((err) => console.log(err));
   });
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
   return (
     <>
       <motion.div
-      // initial={{ x: "100vw" }}
-      // animate={{ x: 0 }}
-      // transition={{ ease: "linear", delay: 0.25 }}
-      // exit={{ x: "-100vw", transition: { ease: "linear" } }}
+        // initial={{ x: "100vw" }}
+        // animate={{ x: 0 }}
+        // transition={{ ease: "linear", delay: 0.25 }}
+        // exit={{ x: "-100vw", transition: { ease: "linear" } }}
+        variants={variants}
+        initial="initial"
+        animate="visible"
+        onAnimationComplete={() => setFirstMount(true)}
       >
-        <TopNav windowSize={windowSize} />
+        <TopNav setOpen={setOpen} />
         <section className="card">
           <div className="card__filters">
             <CategoryButton
               filter={filter}
               name="work"
+              value="work"
               handleClick={handleClick}
               classes={`card__filter ${filter === "work" ? "active" : ""}`}
             />
             <CategoryButton
               filter={filter}
               name="study"
+              value="study"
               handleClick={handleClick}
               classes={`card__filter ${filter === "study" ? "active" : ""}`}
             />
             <CategoryButton
               filter={filter}
               name="entertainment"
+              value="entertainment"
               handleClick={handleClick}
               classes={`card__filter ${
                 filter === "entertainment" ? "active" : ""
@@ -102,6 +91,7 @@ logic for category filters:
             <CategoryButton
               filter={filter}
               name="family"
+              value="family"
               handleClick={handleClick}
               classes={`card__filter ${filter === "family" ? "active" : ""}`}
             />
@@ -119,6 +109,7 @@ logic for category filters:
                       handleDelete={handleDelete}
                       optionMenu={optionMenu}
                       setOptionMenu={setOptionMenu}
+                      setOpen={setOpen}
                     />
                   ))
                 ) : (
@@ -129,6 +120,7 @@ logic for category filters:
                       handleDelete={handleDelete}
                       optionMenu={optionMenu}
                       setOptionMenu={setOptionMenu}
+                      setOpen={setOpen}
                     />
                   ))
                 )

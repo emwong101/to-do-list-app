@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FormTemplate from "../form/FormTemplate";
 
-function UpdateList() {
+function UpdateList({ setOpen }) {
   const [data, setData] = useState();
   const [categories, setCategories] = useState([]);
   const params = useParams();
@@ -55,6 +55,7 @@ function UpdateList() {
         handleSubmit={handleSubmit}
         handleClick={handleClick}
         categories={categories}
+        setOpen={setOpen}
       />
     </>
   );

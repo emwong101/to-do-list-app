@@ -1,11 +1,8 @@
+@use "../../partials/breakpoints" as *;
+
 .modal {
-  min-width: fit-content;
-  height: 100%;
-  max-width: 100%;
   display: flex;
   justify-content: center;
-  padding: 3rem;
-  overflow: hidden;
 
   & > * {
     flex: 1 1 0;
@@ -13,6 +10,18 @@
 }
 
 .MuiDialog-paper {
-  min-height: 80vh;
-  border-radius: 18px;
+  min-height: 80%;
+  padding: 1rem 2rem;
+}
+
+@include tablet {
+  .modal {
+    padding: 0;
+    height: 100%;
+  }
+  .MuiDialog-paper {
+    min-width: 60vw;
+    border-radius: 18px;
+    padding: 2.5rem;
+  }
 }

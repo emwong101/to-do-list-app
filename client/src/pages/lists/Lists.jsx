@@ -5,12 +5,12 @@ import CreateList from "../../components/createList/CreateList";
 import DisplayList from "../../components/displayList/DisplayList";
 import "./Lists.scss";
 
-function Lists() {
+function Lists({ open, windowSize }) {
   const { state } = useLocation();
   return (
     <>
       {state?.backgroundLocation ? (
-        <Modal>
+        <Modal open={open} windowSize={windowSize}>
           <Outlet />
         </Modal>
       ) : (

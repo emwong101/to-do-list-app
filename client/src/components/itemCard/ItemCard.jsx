@@ -7,7 +7,7 @@ import { Menu, MenuItem } from "@mui/material";
 import { StyledEngineProvider } from "@mui/material";
 import "./ItemCard.scss";
 
-function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
+function ItemCard({ data, handleDelete, optionMenu, setOptionMenu, setOpen }) {
   const { _id, title, description, categories, complete } = data;
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +33,7 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu }) {
     navigate(`/home/update/${optionMenu}`, {
       state: { backgroundLocation: location },
     });
+    setOpen(true);
   };
 
   useEffect(() => {

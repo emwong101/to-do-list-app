@@ -6,8 +6,7 @@ import { HiPlus } from "react-icons/hi";
 import "./TopNav.scss";
 import CreateList from "../createList/CreateList";
 
-function TopNav({ windowSize }) {
-  const [open, setOpen] = useState(false);
+function TopNav({ setOpen }) {
   const location = useLocation();
 
   const handleOpen = () => {

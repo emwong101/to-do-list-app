@@ -6,14 +6,12 @@
 }
 
 .form {
-  padding: 0rem 1.5rem;
-  height: 100%;
+  width: 100%;
 
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1rem;
   }
 
   &__cancel {

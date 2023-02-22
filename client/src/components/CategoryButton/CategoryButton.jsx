@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-function CategoryButton({ name, handleClick, classes, categories }) {
+function CategoryButton({ name, handleClick, classes, categories, value }) {
   const [checked, setChecked] = useState();
   useEffect(() => {
     if (categories) {
-      const containsCategory = categories.some((item) => item === name)
+      const containsCategory = categories.some((item) => item === value)
         ? true
         : false;
       setChecked(containsCategory);
     }
-  });
+  }, [categories]);
 
   const removeActive = () => {
     if (categories) {
@@ -25,13 +25,13 @@ function CategoryButton({ name, handleClick, classes, categories }) {
     >
       <button
         type="button"
-        className={`filter filter__${name}`}
+        className={`filter filter__${value}`}
         id={name}
-        value={name}
+        value={value}
         onClick={handleClick}
       ></button>
       <label name={name} htmlFor={name}>
-        {name}
+        {value}
       </label>
     </div>
   );
