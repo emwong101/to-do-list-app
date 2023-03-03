@@ -43,7 +43,7 @@ function ItemCard({ data, handleDelete, optionMenu, setOptionMenu, setOpen }) {
   useEffect(() => {
     if (mounted && location.pathname !== "/landing") {
       axios
-        .put(`http://localhost:8080/lists/${_id}`, {
+        .put(`https://to-do-ks1n.onrender.com/lists/${_id}`, {
           complete: checked,
         })
         .then((res) => {

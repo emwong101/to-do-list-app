@@ -29,7 +29,7 @@ function UpdateList({ setOpen }) {
     };
 
     axios
-      .put(`http://localhost:8080/lists/${params.id}`, updatedItem)
+      .put(`https://to-do-ks1n.onrender.com/lists/${params.id}`, updatedItem)
       .then((res) => {
         console.log(res.data.message);
         setCategories([]);
@@ -40,7 +40,7 @@ function UpdateList({ setOpen }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/lists/${params.id}`)
+      .get(`https://to-do-ks1n.onrender.com/lists/${params.id}`)
       .then((res) => {
         setData(res.data);
         setCategories(res.data.categories);

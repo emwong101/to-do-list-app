@@ -34,7 +34,7 @@ logic for category filters:
 
   //delete list item from DB
   const handleDelete = (e) => {
-    axios.delete(`http://localhost:8080/lists/${optionMenu}`);
+    axios.delete(`https://to-do-ks1n.onrender.com/lists/${optionMenu}`);
     setListItems((data) => {
       return data.filter((item) => item._id !== optionMenu);
     });
@@ -43,7 +43,7 @@ logic for category filters:
   //fetch and set data from DB on render
   useEffect(() => {
     axios
-      .get("http://localhost:8080/lists")
+      .get("https://to-do-ks1n.onrender.com/lists")
       .then((res) => {
         setListItems(res.data);
       })

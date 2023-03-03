@@ -34,7 +34,7 @@ function CreateList({ setOpen }) {
     };
 
     axios
-      .post("http://localhost:8080/lists", newItem)
+      .post("https://to-do-ks1n.onrender.com/lists", newItem)
       .then((res) => {
         setCategories([]);
         console.log(res.data.message);
