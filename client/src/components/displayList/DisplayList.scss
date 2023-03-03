@@ -1,0 +1,92 @@
+@use "../../partials/colors" as *;
+@use "../../partials/breakpoints" as *;
+
+.card {
+  &__list {
+    list-style: none;
+    padding: 0 1rem;
+    margin: 0;
+    padding-bottom: 2rem;
+    width: 100%;
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+  }
+
+  &__filter {
+    width: fit-content;
+    min-width: 0;
+    padding: 0.25rem 0.5rem;
+    background: none;
+    color: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+
+    & > label {
+      cursor: pointer;
+    }
+  }
+}
+
+.filter {
+  border-radius: 50%;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  margin-right: 0.5rem;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &__work {
+    background-color: $primary-work;
+  }
+
+  &__study {
+    background-color: $primary-study;
+  }
+
+  &__entertainment {
+    background-color: #ffcece;
+  }
+
+  &__family {
+    background-color: $primary-family;
+  }
+}
+
+.active {
+  background-color: #f1f0ee;
+  border-radius: 5px;
+}
+
+@include tablet {
+  .card {
+    display: flex;
+
+    &__filters {
+      flex-direction: column;
+      height: 17rem;
+    }
+
+    &__filter {
+      font-size: 0.85rem;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+  .filter {
+    min-height: 2rem;
+    min-width: 2rem;
+  }
+}

@@ -1,0 +1,40 @@
+@use "../../partials/colors" as *;
+
+.card__filter {
+  background: none;
+  color: inherit;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+}
+
+.filter {
+  border-radius: 50%;
+  min-height: 2rem;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+  border: none;
+  outline: none;
+
+  &__work {
+    background-color: $primary-work;
+  }
+
+  &__study {
+    background-color: $primary-study;
+  }
+
+  &__entertainment {
+    background-color: #ffcece;
+  }
+
+  &__family {
+    background-color: $primary-family;
+  }
+}
+
+.active {
+  background-color: #f1f0ee;
+  border-radius: 5px;
+}

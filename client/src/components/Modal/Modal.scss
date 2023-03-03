@@ -1,0 +1,29 @@
+@use "../../partials/breakpoints" as *;
+
+.modal {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  height: 100%;
+
+  & > * {
+    flex: 1 1 0;
+  }
+}
+
+.MuiDialog-paper {
+  padding: 1rem 2rem;
+}
+
+@include tablet {
+  .modal {
+    padding: 0;
+    height: 100%;
+  }
+  .MuiDialog-paper {
+    min-width: 60vw;
+    max-height: 75vh;
+    border-radius: 18px;
+    padding: 2.5rem;
+  }
+}

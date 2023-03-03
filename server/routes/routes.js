@@ -7,9 +7,12 @@ const {
   createItem,
   updateItem,
   deleteItem,
+  getOneItem,
 } = require("../controllers/endpoints");
 
 router.get("/", getAllItems);
+
+router.get("/:id", getOneItem);
 
 router.post("/", createItem);
 

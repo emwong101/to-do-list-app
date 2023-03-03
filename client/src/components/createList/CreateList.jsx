@@ -1,54 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateList.scss";
+import FormTemplate from "../form/FormTemplate";
 
-function CreateList() {
+function CreateList({ setOpen }) {
   const navigate = useNavigate();
-  const [data, setData] = useState({ title: "", description: "" });
+  const [categories, setCategories] = useState([]);
+  const [categoryName, setCategoryName] = useState();
 
-  function handleChange(e) {
-    setData((data) => ({ ...data, [e.target.name]: e.target.value }));
+  const animation = {
+    hidden: { opacity: 0, x: "100vw" },
+    visible: { opacity: 1, x: 0, transition: { ease: "linear", delay: 0.25 } },
+    exit: { opacity: 1, x: "-100vw", transition: { ease: "easeInOut" } },
+  };
+
+  function handleClick(e) {
+    const index = categories.indexOf(e.target.value);
+    categories.includes(e.target.value)
+      ? categories.splice(index, 1)
+      : categories.push(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const newItem = {
-      title: data.title,
-      description: data.description,
+      title: e.target.title.value,
+      description: e.target.description.value,
+      categories: categories,
+      complete: false,
     };
 
     axios
-      .post("http://localhost:8080/lists", data)
+      .post("http://localhost:8080/lists", newItem)
       .then((res) => {
-        setData({ title: "", description: "" });
+        setCategories([]);
         console.log(res.data.message);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => console.log(err.message));
   }
 
   return (
-    <div>
-      <form className="form__container" onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          value={data.title}
-          onChange={handleChange}
-        ></input>
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          value={data.description}
-          onChange={handleChange}
-        ></input>
-        <input type="submit" value="Submit"></input>
-      </form>
-    </div>
+    <FormTemplate
+      categories={categories}
+      handleSubmit={handleSubmit}
+      handleClick={handleClick}
+      setOpen={setOpen}
+    />
   );
 }
 

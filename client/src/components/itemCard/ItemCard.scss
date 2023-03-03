@@ -1,0 +1,209 @@
+@use "../../partials/colors" as *;
+@use "../../partials/breakpoints" as *;
+
+.item {
+  width: 100%;
+  min-width: 15rem;
+  height: fit-content;
+  background-color: $primary-background;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+
+  &__heading {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    display: block;
+    & > h2 {
+      margin: 0;
+    }
+  }
+
+  &__body {
+    display: block;
+    width: fit-content;
+    padding: 1rem 0;
+    margin: 0;
+  }
+
+  &__menu {
+    &--button {
+      padding: 0;
+    }
+    &--link {
+      width: 10rem;
+      color: #cfccbf;
+      padding: 0 1rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__options {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2.25rem;
+  }
+
+  &__categories {
+    display: flex;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+
+    &--container {
+      position: relative;
+      padding-right: 1.5rem;
+      line-height: 1;
+      color: $primary-medium;
+      cursor: pointer;
+
+      &:has(> input:checked) {
+        color: black;
+      }
+    }
+
+    &--custom {
+      position: absolute;
+      right: 5px;
+      height: 1rem;
+      width: 1rem;
+      border: 1px solid $primary-medium;
+      border-radius: 6px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        right: 0;
+        left: 5px;
+        bottom: 2px;
+        width: 0.4rem;
+        height: 0.75rem;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__done {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .item__checkbox--custom::after {
+      display: block;
+    }
+
+    &:checked + span {
+      border-color: black;
+    }
+  }
+}
+
+.done {
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+
+  &::after {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 55%;
+    left: 0;
+    height: 2px;
+    background: #696969;
+    transform-origin: left;
+    animation: strike 0.5s cubic-bezier(0.55, 0, 0.1, 1) 1;
+    animation-fill-mode: both;
+    transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &--body {
+    @extend .done;
+    &::after {
+      height: 1px;
+    }
+  }
+}
+
+.list__item {
+  list-style: none;
+}
+
+.link {
+  &__top {
+    border-bottom: 1px solid #cfccbf;
+  }
+}
+
+.category {
+  border-radius: 50%;
+  min-height: 2rem;
+  min-width: 2rem;
+  margin-right: 0.5rem;
+
+  &__work {
+    background-color: $primary-work;
+  }
+
+  &__study {
+    background-color: $primary-study;
+  }
+
+  &__entertainment {
+    background-color: #ffcece;
+  }
+
+  &__family {
+    background-color: $primary-family;
+  }
+}
+
+.MuiMenu-paper {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.MuiMenu-list {
+  padding: 0;
+  min-height: 5rem;
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    flex: 1 1 0;
+  }
+}
+
+// @include tablet {
+//   .MuiMenu-list {
+//   }
+// }
