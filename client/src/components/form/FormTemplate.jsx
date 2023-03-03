@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import CategoryButton from "../CategoryButton/CategoryButton";
 import "./FormTemplate.scss";
 
@@ -15,27 +14,17 @@ function FormTemplate({
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      {" "}
       <div className="form">
-        {/* <motion.div
-        className="form"
-        initial={{ x: "100vw" }}
-        animate={{ x: 0 }}
-        transition={{ ease: "linear", delay: 0.25 }}
-        exit={{ x: "-100vw", transition: { ease: "linear" } }}
-      > */}
         <div className="form__top">
-          {/* <Link to="/home"> */}
           <input
             type="button"
             onClick={() => {
               setOpen(false);
-              setTimeout(() => navigate(-1), 300);
+              window.history.replaceState("/home/create", "Title", "/home");
             }}
             className="form__cancel"
             value="Cancel"
           ></input>
-          {/* </Link> */}
           <input type="submit" className="form__add" value="Add" />
         </div>
         <div className="form__inputs">
@@ -93,7 +82,6 @@ function FormTemplate({
           </div>
         </div>{" "}
       </div>
-      {/* </motion.div> */}
     </form>
   );
 }
