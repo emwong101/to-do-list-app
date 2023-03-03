@@ -11,7 +11,7 @@ import Landing from "./pages/landing/Landing";
 
 function App() {
   const location = useLocation();
-  const background = location.state && location.state.background;
+  // const background = location.state && location.state.background;
   const [open, setOpen] = useState(false);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
   const [firstMount, setFirstMount] = useState(false);
@@ -30,7 +30,7 @@ function App() {
     <>
       <div className="App">
         <AnimatePresence>
-          <Routes location={background || location} key={location.pathname}>
+          <Routes location={location} key={location.pathname}>
             <Route path="/" element={<SplashScreen />} />
             <Route path="/landing" element={<Landing />} />
             <Route

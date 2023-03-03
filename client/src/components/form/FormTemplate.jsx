@@ -12,6 +12,7 @@ function FormTemplate({
   setOpen,
 }) {
   const navigate = useNavigate();
+
   return (
     <form onSubmit={handleSubmit} className="form">
       {" "}
@@ -29,7 +30,7 @@ function FormTemplate({
             type="button"
             onClick={() => {
               setOpen(false);
-              navigate(-1);
+              setTimeout(() => navigate(-1), 300);
             }}
             className="form__cancel"
             value="Cancel"

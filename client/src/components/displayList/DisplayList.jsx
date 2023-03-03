@@ -53,16 +53,12 @@ logic for category filters:
   return (
     <>
       <motion.div
-        // initial={{ x: "100vw" }}
-        // animate={{ x: 0 }}
-        // transition={{ ease: "linear", delay: 0.25 }}
-        // exit={{ x: "-100vw", transition: { ease: "linear" } }}
         variants={variants}
         initial="initial"
         animate="visible"
         onAnimationComplete={() => setFirstMount(true)}
       >
-        <TopNav setOpen={setOpen} />
+        <TopNav setOpen={setOpen} setFirstMount={setFirstMount} />
         <section className="card">
           <div className="card__filters">
             <CategoryButton
